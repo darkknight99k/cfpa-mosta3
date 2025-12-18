@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFPA 03 مستغانم - كريشيش بن ذهيبة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+            transition: 0.5s;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0e0;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1,
+        .header h2,
+        .header p {
+            text-shadow: 0 0 10px #00fff0, 0 0 20px #00cfcf;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            color: #00fff0;
+            margin-bottom: 5px;
+        }
+
+        .header h2 {
+            font-size: 18px;
+            color: #00cfff;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #00bfff;
+        }
+
+        /* Subtitle for specialties */
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #fffa;
+            margin-bottom: 15px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            background: rgba(0, 255, 255, 0.1);
+            color: #00fff0;
+            font-weight: 600;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .tab.active {
+            background: #00fff0;
+            color: #0f0c29;
+            box-shadow: 0 0 20px #00fff0;
+        }
+
+        /* Tab content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .tab-content.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        /* Card */
+        .card {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 14px;
+            padding: 15px;
+            box-shadow: 0 0 15px #00fff0;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px #00fff0, 0 0 30px #00cfff;
+        }
+
+        .card h3 {
+            color: #00fff0;
+            margin-bottom: 8px;
+            font-size: 18px;
+            text-shadow: 0 0 5px #00fff0;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: #c0f0f0;
+            margin-bottom: 8px;
+        }
+
+        /* New Badge */
+        .badge-new {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff0033;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+
+        /* Badges info */
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 3px 3px 0 0;
+        }
+
+        .badge-level {
+            background: rgba(0, 255, 255, 0.2);
+            color: #00fff0;
+        }
+
+        .badge-duration {
+            background: rgba(255, 255, 255, 0.2);
+            color: #00cfff;
+        }
+
+        .badge-cert {
+            background: rgba(0, 255, 255, 0.1);
+            color: #00bfff;
+        }
+
+        /* Button */
+        .button-link {
+            margin-top: 8px;
+            padding: 6px 12px;
+            background: #00fff0;
+            color: #0f0c29;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 0 8px #00fff0;
+            transition: 0.3s;
+        }
+
+        .button-link:hover {
+            background: #00cfff;
+            box-shadow: 0 0 12px #00cfff;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            50%,
+            100% {
+                opacity: 1;
+            }
+
+            25%,
+            75% {
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media(max-width:768px) {
+            .tab-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 30px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-top: 2px solid #00fff0;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+            box-shadow: 0 -10px 20px rgba(0, 255, 240, 0.1);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-credits {
+            font-size: 14px;
+            color: #c0f0f0;
+            line-height: 1.8;
+        }
+
+        .footer-credits strong {
+            color: #00fff0;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .names-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .name-tag {
+            background: rgba(0, 255, 240, 0.1);
+            padding: 5px 15px;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 255, 240, 0.3);
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .name-tag:hover {
+            background: #00fff0;
+            color: #0f0c29;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 240, 0.4);
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 12px;
+            opacity: 0.6;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>الجمهورية الجزائرية الديمقراطية الشعبية</h1>
+        <h2>وزارة التكوين والتعليم المهنيين</h2>
+        <p>مديرية التكوين والتعليم المهنيين</p>
+        <h1>مركز التكوين المهني و التمهين</h1>
+        <h2>CFPA 03 - مستغانم</h2>
+        <h2>كريشيش بن ذهيبة</h2>
+    </div>
+
+    <div class="subtitle">التخصصات المقترحة لشهر فبراير 2026</div>
+
+    <div class="tabs">
+        <div class="tab active" data-tab="presentiel">التكوين الحضوري</div>
+        <div class="tab" data-tab="tamhine">التكوين عن تمهين</div>
+        <div class="tab" data-tab="women">تكوين المرأة المقيمة بالبيت</div>
+        <div class="tab" data-tab="soir">التكوين المسائي</div>
+    </div>
+
+    <!-- التكوين الحضوري -->
+    <div class="tab-content active" id="presentiel">
+        <div class="card">
+            <img src="img/couture.webp" alt="الخياطة">
+            <h3>الخياطة</h3>
+            <p>طور مهارتك في الخياطة لتصبح محترفًا في صنع الملابس والتصميم.</p>
+            <span class="badge badge-level">نهاية الطور الابتدائي</span>
+            <span class="badge badge-duration">12 شهر</span>
+            <span class="badge badge-cert">شهادة الكفاءة المهنية</span>
+            <a href="https://www.takwin.dz/inscription/247480/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+        <div class="card">
+            <img src="img/piquage.webp" alt="تصميم النماذج">
+            <h3>تصميم النماذج وتركيبها</h3>
+            <p>تعلم تصميم النماذج وتركيبها لتطوير مهاراتك العملية.</p>
+
+            <span class="badge badge-level">نهاية الطور الابتدائي</span>
+            <span class="badge badge-duration">03 أشهر</span>
+            <span class="badge badge-cert">شهادة تأهيل</span>
+            <a href="https://www.takwin.dz/inscription/248811/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+        <div class="card">
+            <img src="img/web.webp" alt="إنشاء الواب">
+            <h3>إنشاء الواب WEB والمتحول</h3>
+            <p>اكتسب مهارة تطوير المواقع والتطبيقات المتحركة.</p>
+            <span class="badge-new">جديد</span>
+            <span class="badge badge-level">الثانية ثانوي</span>
+            <span class="badge badge-duration">06 أشهر</span>
+            <span class="badge badge-cert">شهادة تأهيل</span>
+            <a href="https://www.takwin.dz/inscription/248476/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+        <div class="card">
+            <img src="img/hse.webp" alt="عون الوقاية">
+            <h3>عون الوقاية والأمن</h3>
+            <p>تعلم مهارات الأمن والحماية لتصبح مؤهلًا للعمل في مجالات السلامة.</p>
+            <span class="badge-new">جديد</span>
+            <span class="badge badge-level">الثالثة ثانوي</span>
+            <span class="badge badge-duration">06 أشهر</span>
+            <span class="badge badge-cert">شهادة تأهيل</span>
+            <a href="#" class="button-link">تسجيل</a>
+        </div>
+        <div class="card">
+            <img src="img/bin.webp" alt="فرز النفايات">
+            <h3>فرز النفايات</h3>
+            <p>تعلم كيفية فرز النفايات وإعادة تدويرها بشكل محترف.</p>
+            <span class="badge-new">جديد</span>
+            <span class="badge badge-level">دون المستوى</span>
+            <span class="badge badge-duration">03 أشهر</span>
+            <span class="badge badge-cert">شهادة تأهيل</span>
+            <a href="https://www.takwin.dz/inscription/248529/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+    </div>
+
+    <!-- التكوين عن تمهين -->
+    <div class="tab-content" id="tamhine">
+        <div class="card">
+            <img src="img/coifure.webp" alt="حلاقة السيدات">
+            <h3>حلاقة السيدات</h3>
+            <p>تعلمي فنون الحلاقة وتصفيف الشعر للنساء باحترافية، وابدئي تقديم خدمات مميزة في صالونك أو من المنزل.</p>
+            <span class="badge badge-level">الرابعة متوسط</span>
+            <span class="badge badge-duration">12 شهر</span>
+            <span class="badge badge-cert">شهادة الكفاءة المهنية</span>
+            <a href="https://www.takwin.dz/inscription/247532/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+        <div class="card">
+            <img src="img/couture.webp" alt="الخياطة">
+            <h3>الخياطة</h3>
+            <p>اكتسب خبرة في الخياطة ومهارات الإنتاج الاحترافي.</p>
+            <span class="badge badge-level">نهاية الطور الابتدائي</span>
+            <span class="badge badge-duration">12 شهر</span>
+            <span class="badge badge-cert">شهادة الكفاءة المهنية</span>
+            <a href="https://www.takwin.dz/inscription/247600/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+        <div class="card">
+            <img src="img/reception.webp" alt="الفندقة استقبال">
+            <h3>الفندقة خيار استقبال</h3>
+            <p>تعلم كيفية استقبال الضيوف والخدمات الفندقية بأسلوب احترافي.</p>
+            <span class="badge badge-level">الرابعة متوسط</span>
+            <span class="badge badge-duration">12 شهر</span>
+            <span class="badge badge-cert">شهادة الكفاءة المهنية</span>
+            <a href="https://www.takwin.dz/inscription/247634/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+        <div class="card">
+            <img src="img/hotel-ser.webp" alt="الفندقة خدمات">
+            <h3>الفندقة خيار خدمات الفندقية</h3>
+            <p>تعلم جميع مهارات الخدمات الفندقية والعمل في بيئة احترافية.</p>
+            <span class="badge badge-level">الطور المتوسط</span>
+            <span class="badge badge-duration">12 شهر</span>
+            <span class="badge badge-cert">شهادة الكفاءة المهنية</span>
+            <a href="https://www.takwin.dz/inscription/248343/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+    </div>
+
+    <!-- تكوين المرأة المقيمة بالبيت -->
+    <div class="tab-content" id="women">
+        <div class="card">
+            <span class="badge-new">جديد</span>
+            <img src="img/ped.webp" alt="العناية بالأظافر">
+            <h3>العناية بالأظافر</h3>
+            <p>اكتسبي مهارة العناية بالأظافر وابدئي نشاطًا صغيرًا من المنزل.</p>
+            <span class="badge badge-level">الطور المتوسط</span>
+            <span class="badge badge-duration">شهرين</span>
+            <span class="badge badge-cert">شهادة تأهيل</span>
+            <a href="https://www.takwin.dz/inscription/248406/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+        <div class="card">
+            <img src="img/couture-montage.webp" alt="خياطة وتجميع الملابس">
+            <h3>خياطة وتجميع الملابس</h3>
+            <p>تعلمي خياطة وتجميع الملابس لتتمكني من العمل من المنزل بكفاءة.</p>
+            <span class="badge badge-level">مستوى دراسي محدود</span>
+            <span class="badge badge-duration">03 أشهر</span>
+            <span class="badge badge-cert">شهادة تأهيل</span>
+            <a href="https://www.takwin.dz/inscription/248423/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+    </div>
+
+    <!-- التكوين المسائي -->
+    <div class="tab-content" id="soir">
+        <div class="card">
+            <img src="img/office.webp" alt="تعليم الإعلام الآلي">
+            <h3>تعليم الإعلام الآلي (WORD - EXCEL - POWER POINT)</h3>
+            <p>استغل وقتك مساءً لتعلم الإعلام الآلي ومواكبة التحولات التقنية.</p>
+            <span class="badge badge-level">الرابعة متوسط</span>
+            <a href="https://www.takwin.dz/inscription/248394/35/27/3/2" class="button-link">تسجيل</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-credits">
+                <strong><i class="fas fa-code"></i> إعداد المتربصين تخصص انشاء مواقع الواب</strong>
+                <div class="names-list">
+                    <span class="name-tag">عزيز محمد الأمين</span>
+                    <span class="name-tag">بن أحمد محمد ريان</span>
+                    <span class="name-tag">عفون فاطمة</span>
+                    <span class="name-tag">رشيقي نبيلة</span>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 مركز التكوين المهني و التمهين - مستغانم 03
+            </div>
+        </div>
+    </footer>
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const target = tab.dataset.tab;
+                contents.forEach(c => c.id === target ? c.classList.add('active') : c.classList.remove('active'));
+            });
+        });
+    </script>
+
+</body>
+
+</html>
